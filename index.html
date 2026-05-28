@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALL PUT SIGNAL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+}
+
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin-bottom:25px;
+color:#00ffae;
+}
+
+.card{
+background:#1e293b;
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.pair{
+font-size:24px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.price{
+font-size:35px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.signal{
+display:flex;
+gap:15px;
+}
+
+.btn{
+flex:1;
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+.call{
+background:#00c853;
+color:white;
+}
+
+.put{
+background:#ff1744;
+color:white;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+.info{
+margin-top:15px;
+display:flex;
+justify-content:space-between;
+font-size:14px;
+color:#94a3b8;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+color:#64748b;
+font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+CALL PUT SIGNAL
+</div>
+
+<div class="card">
+
+<div class="pair">
+EUR/USD
+</div>
+
+<div class="price" id="price">
+1.08452
+</div>
+
+<div class="signal">
+<button class="btn call">
+CALL
+</button>
+
+<button class="btn put">
+PUT
+</button>
+</div>
+
+<div class="info">
+<span>WINRATE 89%</span>
+<span>1 MIN</span>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="pair">
+XAU/USD
+</div>
+
+<div class="price">
+3345.20
+</div>
+
+<div class="signal">
+<button class="btn call">
+CALL
+</button>
+
+<button class="btn put">
+PUT
+</button>
+</div>
+
+<div class="info">
+<span>WINRATE 91%</span>
+<span>5 MIN</span>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 CALL PUT SIGNAL
+</div>
+
+</div>
+
+<script>
+
+setInterval(() => {
+
+let random =
+(1.08400 + Math.random() * 0.00200).toFixed(5);
+
+document.getElementById("price").innerHTML = random;
+
+},1000);
+
+</script>
+
+</body>
+</html>
