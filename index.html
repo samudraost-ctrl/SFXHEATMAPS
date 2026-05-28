@@ -1,186 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CALL PUT SIGNAL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SFX Academic Heatmap</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#0f172a;
-color:white;
-padding:20px;
-}
-
-.container{
-max-width:500px;
-margin:auto;
-}
-
-.logo{
-text-align:center;
-font-size:28px;
-font-weight:700;
-margin-bottom:25px;
-color:#00ffae;
-}
-
-.card{
-background:#1e293b;
-border-radius:20px;
-padding:20px;
-margin-bottom:20px;
-box-shadow:0 0 20px rgba(0,0,0,0.4);
-}
-
-.pair{
-font-size:24px;
-font-weight:600;
-margin-bottom:10px;
-}
-
-.price{
-font-size:35px;
-font-weight:700;
-margin-bottom:15px;
-}
-
-.signal{
-display:flex;
-gap:15px;
-}
-
-.btn{
-flex:1;
-padding:15px;
-border:none;
-border-radius:15px;
-font-size:20px;
-font-weight:700;
-cursor:pointer;
-transition:0.3s;
-}
-
-.call{
-background:#00c853;
-color:white;
-}
-
-.put{
-background:#ff1744;
-color:white;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-.info{
-margin-top:15px;
-display:flex;
-justify-content:space-between;
-font-size:14px;
-color:#94a3b8;
-}
-
-.footer{
-text-align:center;
-margin-top:20px;
-color:#64748b;
-font-size:13px;
-}
-</style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="container">
+  <div class="background-glow glow-1"></div>
+  <div class="background-glow glow-2"></div>
 
-<div class="logo">
-CALL PUT SIGNAL
-</div>
+  <header>
+    <div class="logo-area">
+      <div class="logo-box">SFX</div>
+      <div>
+        <h1>CALL & PUT HEATMAP</h1>
+        <p>Live Options Flow Visualization</p>
+      </div>
+    </div>
 
-<div class="card">
+    <div class="market-status">
+      <span class="dot"></span>
+      Market Open
+    </div>
+  </header>
 
-<div class="pair">
-EUR/USD
-</div>
+  <section class="top-bar">
+    <div class="pair-card active">EURUSD</div>
+    <div class="pair-card">GBPUSD</div>
+    <div class="pair-card">USDJPY</div>
+    <div class="pair-card">XAUUSD</div>
+    <div class="pair-card">BTCUSD</div>
+  </section>
 
-<div class="price" id="price">
-1.08452
-</div>
+  <section class="stats-grid">
+    <div class="stat-box">
+      <h3>Total Call Volume</h3>
+      <h2 id="callVolume">0</h2>
+    </div>
 
-<div class="signal">
-<button class="btn call">
-CALL
-</button>
+    <div class="stat-box">
+      <h3>Total Put Volume</h3>
+      <h2 id="putVolume">0</h2>
+    </div>
 
-<button class="btn put">
-PUT
-</button>
-</div>
+    <div class="stat-box">
+      <h3>Dominant Sentiment</h3>
+      <h2 class="bullish">Bullish</h2>
+    </div>
 
-<div class="info">
-<span>WINRATE 89%</span>
-<span>1 MIN</span>
-</div>
+    <div class="stat-box">
+      <h3>Current Price</h3>
+      <h2 id="livePrice">1.0874</h2>
+    </div>
+  </section>
 
-</div>
+  <section class="heatmap-container">
 
-<div class="card">
+    <div class="heatmap-header">
+      <div>Strike</div>
+      <div>Call Intensity</div>
+      <div>Put Intensity</div>
+    </div>
 
-<div class="pair">
-XAU/USD
-</div>
+    <div id="heatmapRows"></div>
 
-<div class="price">
-3345.20
-</div>
+  </section>
 
-<div class="signal">
-<button class="btn call">
-CALL
-</button>
+  <section class="legend-area">
+    <div class="legend-item">
+      <div class="legend-color green-low"></div>
+      Low Call
+    </div>
 
-<button class="btn put">
-PUT
-</button>
-</div>
+    <div class="legend-item">
+      <div class="legend-color green-high"></div>
+      High Call
+    </div>
 
-<div class="info">
-<span>WINRATE 91%</span>
-<span>5 MIN</span>
-</div>
+    <div class="legend-item">
+      <div class="legend-color red-low"></div>
+      Low Put
+    </div>
 
-</div>
+    <div class="legend-item">
+      <div class="legend-color red-high"></div>
+      High Put
+    </div>
+  </section>
 
-<div class="footer">
-© 2026 CALL PUT SIGNAL
-</div>
+  <section class="footer-box">
+    <p>
+      SFX Academic — CME Group Inspired Heatmap Interface
+    </p>
+  </section>
 
-</div>
-
-<script>
-
-setInterval(() => {
-
-let random =
-(1.08400 + Math.random() * 0.00200).toFixed(5);
-
-document.getElementById("price").innerHTML = random;
-
-},1000);
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
